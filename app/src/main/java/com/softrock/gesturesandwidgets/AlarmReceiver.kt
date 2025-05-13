@@ -10,13 +10,12 @@ import androidx.core.app.NotificationCompat
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         val message = intent?.getStringExtra("EXTRA_MESSAGE") ?: return
-        val channelId = "remind_me_alarm"
         context?.let { ctx ->
             val notificationManager =
                 ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val builder = NotificationCompat.Builder(
                 ctx,
-                channelId
+                AppConfig.REMIND_ME_CHANNEL_ID
             )
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Remind Me")

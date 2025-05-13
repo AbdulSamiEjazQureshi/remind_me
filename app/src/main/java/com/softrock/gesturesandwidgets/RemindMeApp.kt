@@ -6,18 +6,21 @@ import android.app.NotificationManager
 import android.os.Build
 import android.util.Log
 
+object AppConfig {
+    const val REMIND_ME_CHANNEL_ID = "remind_me_alarm"
+}
+
 class RemindMeApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val channelId = "remind_me_alarm"
         val channelName = "remind_me"
         val notificationManager =
             getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                channelId,
+                AppConfig.REMIND_ME_CHANNEL_ID,
                 channelName,
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
